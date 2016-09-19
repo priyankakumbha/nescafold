@@ -1,0 +1,17 @@
+<%= form_tag login_path do %>
+<div class="login_container">
+    <div class="user"></div>
+      <h1>USER</h1>
+      <%= label_tag :email %>
+      <%= email_field_tag :email , "", :required => true %>
+      <%= submit_tag "Login" %>
+  </div>
+  <div class="admin">
+    <h1>ADMIN</h1>
+    <!-- <%= label_tag :email %>
+    <%= email_field_tag :email , "", :required => true %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password, "" , :required => true %>
+    <%= submit_tag "Login"%> -->
+  </div>
+<% end %>
