@@ -1,8 +1,4 @@
-
-
-
 == README
-
 == team member
-  -JongIn
-  Priyanka
+    -JongIn
+    -Priyanka
