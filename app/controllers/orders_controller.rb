@@ -25,26 +25,30 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    binding.pry
+    if @current_user.present?
+      order_name = @current_user.name + params["total"];
+      @shop = Shop.find(params["shopId"][0])
+      @order = Order.create :name => order_name
+      i = 0;
+      if @order.present?
+        until params["name"].length-1 < i  do
 
-    order_name = @current_user.name + params["total"];
-    @shop = Shop.find(params["shopId"][0])
-    @order = Order.create :name => order_name
-    i = 0;
-    if @order.present?
-      until params["name"].length-1 < i  do
-
-        @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => 1 , :price => params["price"][i].to_i
-        i +=1;
+          @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => 1 , :price => params["price"][i].to_i
+          i +=1;
+        end
+        redirect_to shop_path(@shop)
+        # t.integer  "product_id"
+        # t.integer  "order_id"
+        # t.integer  "quantity"
+        # t.integer  "price"
+      else
+        # format.html { render :new }
+        # format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-      redirect_to shop_path(@shop)
-      # t.integer  "product_id"
-      # t.integer  "order_id"
-      # t.integer  "quantity"
-      # t.integer  "price"
     else
-      # format.html { render :new }
-      # format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+      redirect_to login_path
+    end
     # @order = Order.new ( )
     # @order = Order.new(order_params)
     #
