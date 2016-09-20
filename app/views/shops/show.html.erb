@@ -10,6 +10,13 @@
   <%= @shop.description %>
 </p>
 
+<p>
+  <strong>Menu:</strong>
+  <% @shop.products.all.each do |p| %>
+    <li>   <%= p.name %> </li>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>
