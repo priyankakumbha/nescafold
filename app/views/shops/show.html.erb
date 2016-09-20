@@ -10,6 +10,42 @@
   <%= @shop.description %>
 </p>
 
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Shop</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      <% @shop.products.all.each do |product| %>
+        <tr class="data">
+          <td class="p_id"><%= product.id %></td>
+          <td class="p_name"><%= product.name %></td>
+          <td class="p_price"><%= product.price %></td>
+          <td class="p_desc"><%= product.description %></td>
+          <td class="shop_id"><%= product.shop_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <div class="order_div">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody class="order_list">
+      </tbody>
+    </table>
+    <p>Total</p> <p class="total"></p>
+  </div>
+  <button class="order_btn">order</button>
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

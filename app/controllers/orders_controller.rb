@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    binding.pry
     @order = Order.new
   end
 
@@ -24,17 +25,38 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+    order_name = @current_user.name + params["total"];
+    @shop = Shop.find(params["shopId"][0])
+    @order = Order.create :name => order_name
+    i = 0;
+    if @order.present?
+      until params["name"].length-1 < i  do
+
+        @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => 1 , :price => params["price"][i].to_i
+        i +=1;
       end
-    end
+      redirect_to shop_path(@shop)
+      # t.integer  "product_id"
+      # t.integer  "order_id"
+      # t.integer  "quantity"
+      # t.integer  "price"
+    else
+      # format.html { render :new }
+      # format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    # @order = Order.new ( )
+    # @order = Order.new(order_params)
+    #
+    # respond_to do |format|
+    #   if @order.save
+    #     format.html { redirect_to @order, notice: 'Order was successfully created.' }
+    #     format.json { render :show, status: :created, location: @order }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @order.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /orders/1
@@ -69,6 +91,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:quantity, :status)
+      params.require(:order).permit(:name, :status)
     end
 end

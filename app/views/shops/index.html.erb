@@ -15,7 +15,7 @@
   <tbody>
     <% @shops.each do |shop| %>
       <tr>
-        <td><%= link_to shop.name , products_path() %></td>
+        <td><td><%= link_to shop.name , shop %></td>
         <td><%= shop.description %></td>
         <!-- <td><%= link_to 'Show', shop %></td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
@@ -27,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Shop', new_shop_path %>
+<%= link_to 'New Shop', new_shop_path %> 
