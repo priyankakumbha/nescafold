@@ -4,6 +4,8 @@
       <h1>USER</h1>
       <%= label_tag :email %>
       <%= email_field_tag :email , "", :required => true %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password, "" , :required => true %>
       <%= submit_tag "Login" %>
   </div>
   <div class="admin">

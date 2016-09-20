@@ -10,9 +10,15 @@ p "User Count: #{User.all.count} "
 
 Shop.destroy_all
 
+<<<<<<< HEAD
 s1 = Shop.create :name => "Sardough Coffee", :description => "It's very good" ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg"
 s2 = Shop.create :name => "7 eleven ", :description => "It's very cheap " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg"
 s3 = Shop.create :name => "Type B ", :description => "Joes Gilfriend Cafe !! " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325024/cabukee-counter_kqvvgl.png"
+=======
+s1 = Shop.create :name => "Sardough Coffee", :description => "It's very good" ,:image => "http://fillmurray.com/200/300.jpg"
+s2 = Shop.create :name => "7 eleven ", :description => "It's very cheap " ,:image => "http://fillmurray.com/200/300.jpg"
+s3 = Shop.create :name => "Type B ", :description => "Joes Gilfriend Cafe !! " ,:image => "http://fillmurray.com/200/300.jpg"
+>>>>>>> 6cf5b28ffa9a023923a88c702f53b28891d6a910
 
 p "Shops Count: #{Shop.all.count}"
 
