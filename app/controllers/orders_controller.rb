@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    binding.pry
+    
     if @current_user.present?
       order_name = @current_user.name + Date.today.to_s
       @shop = Shop.find(params["shopId"])

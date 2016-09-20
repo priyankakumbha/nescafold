@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'shared/navbar' %>
   <nav>
     <%= link_to("HOME" , main_path )%>
     <% if @current_user.present? %>
@@ -16,6 +17,7 @@
       <%= link_to("LOGIN" , login_path() )%>
     <% end %>
   </nav>
+
 <%= yield %>
 
 </body>

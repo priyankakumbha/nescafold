@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root "shops#index"
 
   get '/main' => 'shops#index' , :as => 'main'
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
 
   get '/logout' => 'session#destroy' , :as =>"logout"
+
+  get "restaurants" => "pages#shop", as: :shops
 
   resources :products
   resources :shops
