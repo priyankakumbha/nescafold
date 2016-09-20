@@ -3,43 +3,35 @@
 <h1>Listing Shops</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
 
-      <th>Product</th>
-      <th>Image</th>
+            <th>Product</th>
+            <th>Image</th>
 
-      <!-- <th>Product</th> -->
+            <!-- <th>Product</th> -->
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
 
-  <tbody>
-    <% @shops.each do |shop| %>
-      <tr>
-        <td><%= link_to shop.name , products_path() %></td>
-        <td><%= shop.description %></td>
-
-       <td> <%= cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 100, :height => 100) %> <td>
-        <td><%= link_to 'Show', shop %></td>
-
-        <!-- <td><%= link_to 'Show', shop %></td>
-
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
+    <tbody>
+        <% @shops.each do |shop| %>
+            <tr>
+                <td><%= link_to shop.name , products_path() %></td>
+                <td><%= shop.description %></td>
+                <td><%= cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 100, :height => 100) %></td>
+                <td><%= link_to 'Show', shop %></td>
+                <!-- <td><%= link_to 'Show', shop %></td>
+                <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
+                <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+        <% end %>
+    </tbody>
 </table>
 
 <br>
-
-
-
-
-
 
 <%= link_to 'New Shop', new_shop_path %>
