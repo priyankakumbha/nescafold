@@ -3,6 +3,7 @@
 <p>
   <strong>Name:</strong>
   <%= @shop.name %>
+<div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
 </p>
 
 <p>
@@ -13,13 +14,14 @@
   <table>
     <thead>
       <tr>
+        <th>Product_id</th>
         <th>Name</th>
         <th>Price</th>
         <th>Description</th>
         <th>Shop</th>
+        <th>Image</th>
       </tr>
     </thead>
-
     <tbody>
       <% @shop.products.all.each do |product| %>
         <tr class="data">
@@ -28,6 +30,7 @@
           <td class="p_price"><%= product.price %></td>
           <td class="p_desc"><%= product.description %></td>
           <td class="shop_id"><%= product.shop_id %></td>
+          <td><div class="imageshow">  <%= cl_image_tag(product.image) %></div></td>
         </tr>
       <% end %>
     </tbody>
