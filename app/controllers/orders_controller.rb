@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    
+
     if @current_user.present?
       order_name = @current_user.name + Date.today.to_s
       @shop = Shop.find(params["shopId"])
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
           @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => params["quantity"][i].to_i , :price =>  params["price"][i].to_i
           i +=1;
         end
-        redirect_to shop_path(@shop)
+        redirect_to orders_path
         # t.integer  "product_id"
         # t.integer  "order_id"
         # t.integer  "quantity"
