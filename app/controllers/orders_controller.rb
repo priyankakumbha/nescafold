@@ -27,14 +27,14 @@ class OrdersController < ApplicationController
   def create
     binding.pry
     if @current_user.present?
-      order_name = @current_user.name + params["total"];
-      @shop = Shop.find(params["shopId"][0])
+      order_name = @current_user.name + Date.today.to_s
+      @shop = Shop.find(params["shopId"])
       @order = Order.create :name => order_name
       i = 0;
       if @order.present?
         until params["name"].length-1 < i  do
 
-          @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => 1 , :price => params["price"][i].to_i
+          @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => params["quantity"][i].to_i , :price =>  params["price"][i].to_i
           i +=1;
         end
         redirect_to shop_path(@shop)

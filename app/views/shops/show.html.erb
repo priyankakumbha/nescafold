@@ -20,6 +20,8 @@
         <th>Description</th>
         <th>Shop</th>
         <th>Image</th>
+        <th>checkBox</th>
+        <th>Quantity</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +33,8 @@
           <td class="p_desc"><%= product.description %></td>
           <td class="shop_id"><%= product.shop_id %></td>
           <td><div class="imageshow">  <%= cl_image_tag(product.image) %></div></td>
+          <td><input class="checkItem" type="checkbox"/></td>
+          <td><input class="quantity" type="number"/></td>
         </tr>
       <% end %>
     </tbody>
