@@ -22,9 +22,8 @@ $(document).on("turbolinks:load", function (){
       this.parentElement.parentElement.getElementsByClassName("checkItem")[0].checked = false;
       return;
     }else{
-
       // set check box
-      if ( this.parentElement.parentElement.getElementsByClassName("checkItem")[0].getAttribute("checked") === "true" ){
+      if ( !this.parentElement.parentElement.getElementsByClassName("checkItem")[0].checked){
         var tempClassName = "."+this.parentElement.parentElement.getElementsByClassName("p_id")[0].innerHTML;
         //remove tag
         $(tempClassName).remove();
@@ -41,10 +40,13 @@ $(document).on("turbolinks:load", function (){
 
         var quantityIndex = quantityArr.indexOf(this.parentElement.parentElement.getElementsByClassName("quantity")[0].value);
         quantityArr.splice( priceIndex , 1 );
-        this.parentElement.parentElement.getElementsByClassName("quantity")[0].value = "";
+
+        this.parentElement.parentElement.getElementsByClassName("quantity")[0].removeAttribute("disabled");
 
         total -= (parseInt(this.parentElement.parentElement.getElementsByClassName("p_price")[0].innerHTML) * parseInt(this.parentElement.parentElement.getElementsByClassName("quantity")[0].value));
         $total.html(total);
+
+        this.parentElement.parentElement.getElementsByClassName("quantity")[0].value = "";
 
       }else{
 
@@ -60,17 +62,20 @@ $(document).on("turbolinks:load", function (){
 
         price = this.parentElement.parentElement.getElementsByClassName("p_price")[0].innerHTML;
         priceArr.push(price);
-
         quantity = this.parentElement.parentElement.getElementsByClassName("quantity")[0].value;
         quantityArr.push(quantity);
 
         total += (parseInt(price) * parseInt(quantity) );
+        this.parentElement.parentElement.getElementsByClassName("quantity")[0].disabled=true;
+
 
         $total.html(total);
         var nameTag = "<td>"+name+"</td>";
         var priceTag = "<td>"+price+"</td>";
+        var quantityTag = "<td>"+quantity+"</td>";
         $tr.append(nameTag);
         $tr.append(priceTag);
+        $tr.append(quantityTag);
         $(".order_list").append($tr);
       }
     }

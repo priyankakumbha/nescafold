@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
       i = 0;
       if @order.present?
         until params["name"].length-1 < i  do
-
           @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => params["quantity"][i].to_i , :price =>  params["price"][i].to_i
           i +=1;
         end
