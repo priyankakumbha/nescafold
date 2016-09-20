@@ -20,7 +20,7 @@
     <tbody>
         <% @shops.each do |shop| %>
             <tr>
-                <td><%= link_to shop.name , products_path() %></td>
+                <td><%= link_to shop.name , shop_path(shop) %></td>
                 <td><%= shop.description %></td>
                 <td><%= cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 100, :height => 100) %></td>
                 <td><%= link_to 'Show', shop %></td>
@@ -30,25 +30,8 @@
             </tr>
         <% end %>
     </tbody>
-
 </table>
 
 <br>
-<br>
-
 
 <%= link_to 'New Shop', new_shop_path %>
-
-
-<!-- CSS  -->
-
-<!-- Retaurants layout  -->
-<!-- 1. Create a Div where the list of restaurants will be shown
-1.1 Inside this Div we have the Name description, price and the image of the place
-2. they are shown 3 per line
-
-  -->
-
-<!-- Menu Layoout -->
-<!-- 1. Create one div that shows all the dishes from the loop, they are shown side by side 2 per line
-2. create a div with for each product with the Name Description and image 220x176 px  -->
