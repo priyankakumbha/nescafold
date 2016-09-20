@@ -19,6 +19,7 @@
   <strong>Shop:</strong>
   <%= @product.shop_id %>
 </p>
+<p><div class="imageshow">  <%= cl_image_tag(@product.image) %></div></p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
