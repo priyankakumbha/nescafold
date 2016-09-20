@@ -2,12 +2,19 @@
 <html>
 <head>
   <title>Nescafold</title>
+  <%= cloudinary_js_config %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <nav>
+    <% if @current_user.present? %>
+      <%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
+    <% else %>
+      <%= link_to("LOGIN" , login_path() )%>
+    <% end %>
+  </nav>
 <%= yield %>
 
 </body>

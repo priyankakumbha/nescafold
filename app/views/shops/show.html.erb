@@ -3,6 +3,7 @@
 <p>
   <strong>Name:</strong>
   <%= @shop.name %>
+<div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
 </p>
 
 <p>
@@ -16,6 +17,8 @@
     <li>   <%= p.name %> </li>
   <% end %>
 </p>
+
+
 
 
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
