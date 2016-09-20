@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:show, :edit, :update, :destroy]
+  before_action :set_shop, only: [:show, :edit, :update, :destroy, :image]
 
   # GET /shops
   # GET /shops.json
@@ -20,11 +20,16 @@ class ShopsController < ApplicationController
   # GET /shops/1/edit
   def edit
   end
-
+def image
+  @shop = Shop.find(params[:image])
+end
   # POST /shops
   # POST /shops.json
   def create
     @shop = Shop.new(shop_params)
+
+    req = Cloudinary::Uploader.upload(params[:file])
+    @shop.image = req["url"]
 
     respond_to do |format|
       if @shop.save

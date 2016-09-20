@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :image]
 
   # GET /products
   # GET /products.json
@@ -21,10 +21,15 @@ class ProductsController < ApplicationController
   def edit
   end
 
+  def image
+    @shop = Shop.find(params[:image])
+  end
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    req = Cloudinary::Uploader.upload(params[:file])
+    @product.image = req["url"]
 
     respond_to do |format|
       if @product.save
