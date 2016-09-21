@@ -2,12 +2,15 @@
 <html>
 <head>
   <title>Nescafold</title>
-  <%= cloudinary_js_config %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4qVLQZjS8OzwiNyXVG71OAwvFrF1gVjE' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <%= render 'shared/navbar' %>
   <nav>
     <%= link_to("HOME" , main_path )%>

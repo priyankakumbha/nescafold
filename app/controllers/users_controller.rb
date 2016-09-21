@@ -25,8 +25,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @welcome_message = "Thank you to register with Nescafold"
+    @image_url = "http://freedesignfile.com/upload/2015/09/Cute-smile-emoticon-icons-vectors-set-10.jpg"
 
     respond_to do |format|
+
+      someController = NotificationsController.new
+      someController.send_message(@user.phone_number , '', @image_url);
+
       if @user.save
         UserMailer.welcome(@user).deliver_now
         format.html { redirect_to @user, notice: 'User was successfully created.' }

@@ -98,3 +98,97 @@ $(document).on("turbolinks:load", function (){
         });
   });
 });
+
+
+var infowindow = new google.maps.InfoWindow();
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var labelIndex = 0;
+var myLatLng = {
+  lat: -33.8660109,
+  lng: 151.2054294
+};
+
+var initMap = function() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: myLatLng
+  });
+};
+
+console.log("HELLO");
+var baseUrl = "https://api.foursquare.com/v2/venues/search?";
+console.log(baseUrl);
+
+var searchFourSquareApi = function(term) {
+    $.ajax({
+        url: baseUrl,
+        type: "GET",
+        data: {
+            client_id: 'QA2BISLYURA3BPTIRNSERGJQDDI1WGKMOJVOALDI3NTCSGCC',
+			client_secret: 'T5NSVVT5YRSL4KCPQ3V52XW4JNEWJJBFOFIQULSYHSBKI2RE',
+            oauth_token:"N4BK4CQXX13GV5QSPNRXGGR0CYPRCGJIMJCEDIK1SRIYFVXJ",
+            v:"20160920",
+            query: term,
+            format: "json",
+            //ll:"-33.8660109,151.2054294",
+            ll:"-33.86,151.20",
+			limit: 20,
+			radius: 10000,
+			sortByDistance: 1,
+			openNow: true,
+            nojsoncallback: true
+        }
+    }).done(function(data) {
+
+        handleSearchData(data);
+    });
+};
+
+var handleSearchData = function(data){
+    // console.log(data.response.venues);
+    var allVenues = data.response.venues;
+    for (var i = 0; i < allVenues.length; i += 1) {
+        var singleVenue = allVenues[i];
+        var lat = singleVenue.location.lat;
+        var lng = singleVenue.location.lng;
+        console.log(singleVenue);
+
+        var description = singleVenue.name;
+        console.log(description);
+        console.log(lat);
+        console.log(lng);
+        var mySingleLatLng = {
+        lat: lat,
+        lng: lng
+        };
+        addMarker(mySingleLatLng,map,description);
+}
+
+};
+
+
+$(document).ready(function() {
+    searchFourSquareApi("food shops");
+    initMap();
+});
+
+function addMarker(location, map,description) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+  var marker = new google.maps.Marker({
+
+    position: location,
+    label: labels[labelIndex++ % labels.length],
+    map: map
+  });
+  var markerNumber =1;
+
+  google.maps.event.addListener(marker, 'click', (function(marker, markerNumber) {
+          return function() {
+            infowindow.setContent(description);
+            infowindow.open(map, marker);
+          };
+    })(marker,markerNumber));
+
+
+}
