@@ -81,22 +81,22 @@ $(document).on("turbolinks:load", function (){
     }
         // .currentTarget.getElementsByClassName("p_name")[0].innerHTML;
   });
-  $(".order_btn").on("click" , function(){
-        $.ajax({
-          url: "/orders",
-          method: "POST",
-          data: {
-            name: nameArr,
-            price: priceArr,
-            shopId: shopId,
-            productId: productIdArr,
-            quantity: quantityArr ,
-            total: total
-          }
-        }).done(function (data) {
-          console.log( data );
-        });
-  });
+  // $(".order_btn").on("click" , function(){
+  //       $.ajax({
+  //         url: "/orders",
+  //         method: "POST",
+  //         data: {
+  //           name: nameArr,
+  //           price: priceArr,
+  //           shopId: shopId,
+  //           productId: productIdArr,
+  //           quantity: quantityArr ,
+  //           total: total
+  //         }
+  //       }).done(function (data) {
+  //         console.log( data );
+  //       });
+  // });
 });
 
 
@@ -161,15 +161,25 @@ var handleSearchData = function(data){
         lat: lat,
         lng: lng
         };
-        addMarker(mySingleLatLng,map,description);
+        //addMarker(mySingleLatLng,map,description);
 }
 
 };
 
 
 $(document).ready(function() {
-    searchFourSquareApi("food shops");
+    //searchFourSquareApi("food shops");
     initMap();
+    var shopLatLng = $('#shoplatlng').text();
+    var shopName = $('#shopName').text();
+    if(shopLatLng !='null' && shopLatLng != 'null') {
+      var shopLatAndLang = shopLatLng.split(",");
+      var myShopSingleLatLng = {
+      lat: Number(shopLatAndLang[0]),
+      lng: Number(shopLatAndLang[1])
+      };
+      addMarker(myShopSingleLatLng,map,shopName);
+    }
 });
 
 function addMarker(location, map,description) {
@@ -189,6 +199,5 @@ function addMarker(location, map,description) {
             infowindow.open(map, marker);
           };
     })(marker,markerNumber));
-
 
 }

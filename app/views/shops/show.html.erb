@@ -1,8 +1,10 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
-  <%= @shop.name %>
+<div id='shopName'>  <%= @shop.name %></div>
 <div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
 </p>
 
@@ -10,6 +12,7 @@
   <strong>Description:</strong>
   <%= @shop.description %>
 </p>
+<div id='shoplatlng'><%= @shop.latlng %></div>
 
 <div id='map'></div>
   <table>

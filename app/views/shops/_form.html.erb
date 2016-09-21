@@ -26,6 +26,11 @@
     <%= f.text_area :description %>
   </div>
 
+  <div class="field">
+    <%= f.label :latlng%><br>
+    <%= f.text_field :latlng ,:value => "-33.8660109, 151.2054294"%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
