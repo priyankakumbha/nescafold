@@ -35,7 +35,7 @@ class SessionController < ApplicationController
         flash[:success] = "login_success"
         session[:user_id] = user.id
         @current_user = user
-        redirect_to orders_path
+        redirect_to adminmain_path
       else
         flash[:error] = "login_fail"
         redirect_to adminLogin_path
@@ -57,7 +57,7 @@ class SessionController < ApplicationController
     flash[:success] = "logout_sucess"
     session[:admin] = nil
 
-    redirect_to main_path
+    redirect_to adminLogin_path
   end
 
 end
