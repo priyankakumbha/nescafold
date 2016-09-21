@@ -43,11 +43,16 @@
 								<div class="form-group">
 									<% if @current_user.present? %>
 									<% if @current_user.admin %>
+									<li>
+										<a href="/adminmain">HOME</a>
+										<li class="divider"></li>
+										<a href="/shops/new">CreateShop</a>
+										<li class="divider"></li>
+										<a href="/products/new">CreateProduct</a>
+										<li class="divider"></li>
+									</li>
 										<%= link_to("ADMIN LOGOUT : #{@current_user.name}" , adminLogout_path() )%>
 									<% else %>
-										<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
-									<% end %>
-
 									<li class="divider"></li>
 								<li>
 									<a href="#">Orders History </a>
@@ -56,6 +61,8 @@
 									<li class="divider"></li>
 									<a href="edit_user_path">My Account </a>
 								</li>
+										<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
+									<% end %>
 							<% else %>
 							<%= form_tag login_path do %>
 								<label class="sr-only" for="exampleInputEmail2">Email address</label>
@@ -66,9 +73,9 @@
 								<%= submit_tag("Submit", :class => "btn btn-primary btn-block" ) %>
 							</div>
 						</div>
-							<% end %>
 						</form>
 					</div>
+					<% end %>
 					<div class="bottom text-center">
 						New here ?
 						<a href=" <%= new_user_path %>">

@@ -51,7 +51,7 @@ p "Products count: #{Product.all.count}"
 
 Order.destroy_all
 
-o1 = Order.create :name => "FirstOrder", :user_id => p1.id
+o1 = Order.create :name => "FirstOrder", :user_id => u1.id
 
 p "Order count: #{Order.all.count}"
 

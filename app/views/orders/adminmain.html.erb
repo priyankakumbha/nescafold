@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Main Page</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <!-- <%= form_tag updatestatus_path, :url => updatestatus_path do %>
+          <td class="order_name"><%= order.name %></td>
+          <td><%= order.status %></td>
+          <th><%= submit_tag "WAIT" %></th>
+          <th><%= submit_tag "COOK" %></th>
+          <th><%= submit_tag "DELIVER" %></th>
+        <% end %> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
