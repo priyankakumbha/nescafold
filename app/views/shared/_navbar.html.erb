@@ -42,7 +42,12 @@
 							<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
 								<div class="form-group">
 									<% if @current_user.present? %>
-									<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
+									<% if @current_user.admin %>
+										<%= link_to("ADMIN LOGOUT : #{@current_user.name}" , adminLogout_path() )%>
+									<% else %>
+										<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
+									<% end %>
+
 									<li class="divider"></li>
 								<li>
 									<a href="#">Orders History </a>

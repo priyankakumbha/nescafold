@@ -1,8 +1,8 @@
-<%= form_tag login_path do %>
-      <h1>USER</h1>
+<%= form_tag adminLogin_path do %>
+      <h1>ADMIN</h1>
       <%= label_tag :email %>
       <%= email_field_tag :email , "", :required => true %>
       <%= label_tag :password %>
       <%= password_field_tag :password, "" , :required => true %>
-      <%= submit_tag "Login" %>
+      <%= submit_tag "AdminLogin" %>
 <% end %>
