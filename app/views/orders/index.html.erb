@@ -15,14 +15,27 @@
       <tr>
         <td class="order_name"><%= order.name %></td>
         <td><%= order.status %></td>
-        <td><%= link_to 'Show', order %></td>
+        <!-- <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
+<table>
+  <thead>
+    <tr>
+      <th> Product Name </th>
+      <th> price </th>
+      <th> Quantity </th>
+      <th> Status </th>
+    </tr>
+  </thead>
+  <tbody class="orderItem">
+  </tbody>
+  <br>
+  <p>total : </p>
+  <p class="total"></p>
 
-<%= link_to 'New Order', new_order_path %>
+<!-- <%= link_to 'New Order', new_order_path %> -->

@@ -27,7 +27,8 @@ class OrdersController < ApplicationController
   def create
 
     if @current_user.present?
-      order_name = @current_user.name + Date.today.to_s
+      time = ` uptime `
+      order_name = @current_user.name + time
       @shop = Shop.find(params["shopId"])
       @order = Order.create :name => order_name
       i = 0;
