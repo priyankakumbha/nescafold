@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get '/logout' => 'session#destroy' , :as =>"logout"
 
-  get "restaurants" => "pages#shop", as: :shops
+
+
+  get '/lineItemList' => 'line_item#lineItemList' 
 
   resources :products
   resources :shops

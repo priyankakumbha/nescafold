@@ -27,7 +27,8 @@ class OrdersController < ApplicationController
   def create
 
     if @current_user.present?
-      order_name = @current_user.name + Date.today.to_s
+      time = ` uptime `
+      order_name = @current_user.name + time
       @shop = Shop.find(params["shopId"])
       @order = Order.create :name => order_name
       i = 0;
@@ -36,6 +37,7 @@ class OrdersController < ApplicationController
           @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => params["quantity"][i].to_i , :price =>  params["price"][i].to_i
           i +=1;
         end
+        UserMailer.order_summary(@user).deliver_now
         redirect_to orders_path
         # t.integer  "product_id"
         # t.integer  "order_id"
