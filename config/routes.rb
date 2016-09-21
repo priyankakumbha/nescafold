@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/logout' => 'session#destroy' , :as =>"logout"
 
-  get "restaurants" => "pages#shop", as: :shops
+
 
   resources :products
   resources :shops
