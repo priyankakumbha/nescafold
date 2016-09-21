@@ -4,7 +4,17 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    binding.pry
+    if @current_user.present?
+      if @current_user.admin
+        @orders = Order.all
+      else
+        @orders = @current_user.orders
+      end
+    else
+      redirect_to login_path
+    end
+
   end
 
   # GET /orders/1
@@ -30,7 +40,7 @@ class OrdersController < ApplicationController
       time = ` uptime `
       order_name = @current_user.name + time
       @shop = Shop.find(params["shopId"])
-      @order = Order.create :name => order_name
+      @order = Order.create :name => order_name , :user_id => @current_user.id
       i = 0;
       if @order.present?
         until params["name"].length-1 < i  do
