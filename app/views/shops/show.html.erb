@@ -27,6 +27,7 @@
     </thead>
     <tbody>
       <% @shop.products.all.each do |product| %>
+<div>
         <tr class="data">
           <td class="p_id"><%= product.id %></td>
           <td class="p_name"><%= product.name %></td>
@@ -37,6 +38,7 @@
           <td><input class="checkItem" type="checkbox"/></td>
           <td><input class="quantity" type="number"/></td>
         </tr>
+      </div>
       <% end %>
     </tbody>
   </table>

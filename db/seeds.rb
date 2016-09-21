@@ -3,7 +3,7 @@ User.destroy_all
 
 
 u1 = User.create :name => "Priyanka", :email => "priyanks@ga.co",:password => "chicken", :password_confirmation => "chicken"
-u2 = User.create :name => "JongBAE", :email => "jongbae@ga.co", :password => "chicken", :password_confirmation => "chicken"
+u2 = User.create :name => "JongBAE", :email => "jongbae@ga.co", :password => "chicken", :password_confirmation => "chicken" , :admin => true
 u3 = User.create :name => "Lucas", :email => "lucas@ga.co", :password => "chicken", :password_confirmation => "chicken"
 
 p "User Count: #{User.all.count} "
@@ -16,9 +16,11 @@ s1 = Shop.create :name => "The Fine Food Store ", :description => "When it comes
 s2 = Shop.create :name => "Hunter Connection International Food Court", :description => "our menu is versatile and constantly evolving, embracing the best of regional and rural cuisines to satisfy even the most discerning of palates.  " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg"
 s3 = Shop.create :name => "Westpac Place Food Court", :description => "THIS FOOD COURT SHOP IS LOCATED IN THE EXTREMELY BUSY WESTPAC PLACE WITH SOME 6500 EMPLOYEES JUST IN THE BUILIDNG ABOVE. " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325024/cabukee-counter_kqvvgl.png"
 
+
 s4 = Shop.create :name => "Westfield Food Court", :description => "It's very good" ,:image => "http://fillmurray.com/200/300.jpg"
 s5 = Shop.create :name => "Food on Five Food Court ", :description => "It's very cheap " ,:image => "http://fillmurray.com/200/300.jpg"
 s6 = Shop.create :name => "Metcentre Food Court", :description => "Joes Gilfriend Cafe !! " ,:image => "http://fillmurray.com/200/300.jpg"
+
 
 
 p "Shops Count: #{Shop.all.count}"
