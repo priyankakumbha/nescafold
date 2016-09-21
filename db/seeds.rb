@@ -11,11 +11,6 @@ p "User Count: #{User.all.count} "
 Shop.destroy_all
 
 
-s1 = Shop.create :name => "Sardough Coffee", :description => "It's very good" ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg"
-s2 = Shop.create :name => "7 eleven ", :description => "It's very cheap " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg"
-s3 = Shop.create :name => "Type B ", :description => "Joes Gilfriend Cafe !! " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325024/cabukee-counter_kqvvgl.png"
-
-
 p "Shops Count: #{Shop.all.count}"
 
 Product.destroy_all

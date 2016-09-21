@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
 
 
+  get '/lineItemList' => 'line_item#lineItemList' 
+
   resources :products
   resources :shops
   resources :orders
