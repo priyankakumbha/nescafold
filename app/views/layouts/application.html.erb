@@ -12,14 +12,14 @@
 <body>
 
   <%= render 'shared/navbar' %>
-  <nav>
+  <!-- <nav>
     <%= link_to("HOME" , main_path )%>
     <% if @current_user.present? %>
       <%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
     <% else %>
       <%= link_to("LOGIN" , login_path() )%>
     <% end %>
-  </nav>
+  </nav> -->
 
 <%= yield %>
 

@@ -1,97 +1,91 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<body>
+<body>  <!-- <body> -->
+	<nav class="navbar navbar-default navbar-inverse" role="navigation"> <!-- nav -->
+			<div class="container-fluid"> <!-- div class="container-fluid" -->
+				<div class="navbar-header"> <!-- div class="navbar-header" -->
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only"> navigation</span>
+						<span class="icon-bar"> </span>
+						<span class="icon-bar">Toggle </span>
+						<span class="icon-bar"></span>
+					</button>
+				<a class="navbar-brand" href="<%= root_path %>">Nescafold</a>
+				</div> <!-- div class="navbar-header" -->
 
-	<nav class="navbar navbar-default navbar-inverse" role="navigation">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header" <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only"> navigation</span> <span class="icon-bar"> </span> <span class="icon-bar">Toggle </span>
-		<span class="icon-bar"></span>
-	</button>
-	<a class="navbar-brand" href="<%= root_path %>">Nescafold</a>
-</div>
-
-<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	<ul class="nav navbar-nav">
-		<li>
-			<a href="<%= shops_path %>">Restaurants</a>
-		</li>
-	</ul>
-	<form class="navbar-form navbar-left" role="search">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Look around">
-		</div>
-		<button type="button" class="btn btn-default" aria-label="Left Align">
-			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-		</button>
-
-	</form>
-	<ul class="nav navbar-nav navbar-right">
-		<li>
-			<p class="navbar-text">Already have an account?</p>
-		</li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<span class="caret"></span>
-			</a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					<div class="row">
-						<div class="col-md-12">
-							<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-								<div class="form-group">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> <!-- div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" -->
+					<ul class="nav navbar-nav">
+					<li><a href="<%= shops_path %>">Restaurants</a></li>
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Look around">
+						</div>
+						<button type="button" class="btn btn-default" aria-label="Left Align">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</form>
+						<ul class="nav navbar-nav navbar-right"><!-- ul class="nav navbar-nav navbar-right" -->
+							<li><p class="navbar-text">Already have an account?</p>
+							</li>
+							<li class="dropdown"><!-- li class="dropdown" -->
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+									<span class="caret"></span>
+								</a>
+								<ul id="login-dp" class="dropdown-menu"><!-- ul id="login-dp" class="dropdown-menu" -->
+									<li> <!-- li -->
+									<div class="row"> <!-- div class="row" -->
+									<div class="col-md-12"><!-- div class="col-md-12"  -->
+									<form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+									</form>
+									<div class="form-group"> <!-- div class="form-group" -->
 									<% if @current_user.present? %>
 									<% if @current_user.admin %>
 									<li>
-										<a href="/adminmain">HOME</a>
-										<li class="divider"></li>
-										<a href="/shops/new">CreateShop</a>
-										<li class="divider"></li>
-										<a href="/products/new">CreateProduct</a>
-										<li class="divider"></li>
+									<a href="/adminmain">HOME</a>
+									<li class="divider"></li>
+									<a href="/shops/new">CreateShop</a>
+									<li class="divider"></li>
+									<a href="/products/new">CreateProduct</a>
+									<li class="divider"></li>
 									</li>
-										<%= link_to("ADMIN LOGOUT : #{@current_user.name}" , adminLogout_path() )%>
+									<%= link_to("ADMIN LOGOUT : #{@current_user.name}" , adminLogout_path() )%>
 									<% else %>
+									<li>
+									<a href="/shops">HOME</a>
 									<li class="divider"></li>
-								<li>
-									<a href="#">Orders History </a>
+									<a href="/orders">Orders History</a>
 									<li class="divider"></li>
-									<a href="order">My Orders Status </a>
+									<a href="/users/<%= @current_user.id %>" >My Account </a>
 									<li class="divider"></li>
-									<a href="edit_user_path">My Account </a>
-								</li>
-										<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
+									</li>
+									<%= link_to("LOGOUT : #{@current_user.name}" , logout_path() )%>
 									<% end %>
-							<% else %>
-							<%= form_tag login_path do %>
-								<label class="sr-only" for="exampleInputEmail2">Email address</label>
-							<%= label_tag :email %>
-							  <%= email_field_tag :email , "", :required => true %>
-								<%= label_tag :password %>
-					      <%= password_field_tag :password, "" , :required => true %>
-								<%= submit_tag("Submit", :class => "btn btn-primary btn-block" ) %>
-							</div>
-						</div>
-						</form>
-					</div>
-					<% end %>
-					<div class="bottom text-center">
-						New here ?
-						<a href=" <%= new_user_path %>">
-							<b>Join Us</b>
-						</a>
-					</div>
-				</div>
-				<% end %>
-			</li>
-		</ul>
-	</li>
-</ul>
-</div>
-<!-- /.navbar-collapse -->
-</div>
-<!-- /.container-fluid -->
-</nav>
-
-</body>
+									<% else %>
+									<%= form_tag login_path do %>
+									<label class="sr-only" for="exampleInputEmail2">Email address</label>
+									<%= label_tag :email %>
+									<%= email_field_tag :email , "", :required => true %>
+									<%= label_tag :password %>
+									<%= password_field_tag :password, "" , :required => true %>
+									<%= submit_tag("Submit", :class => "btn btn-primary btn-block" ) %>
+									</div> <!-- div class="form-group" -->
+									</div> <!-- div class="col-md-12"  -->
+									</form> <!-- form -->
+									</div> <!-- div class="row" -->
+									<% end %>
+									<div class="bottom text-center">
+									New here ?
+									<a href=" <%= new_user_path %>">
+									<b>Join Us</b>
+									</a>
+									</div>
+								</div><!-- div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" -->
+							<% end %>
+							</li><!-- li -->
+						</ul><!-- ul id="login-dp" class="dropdown-menu" -->
+				</li><!-- li class="dropdown" -->
+			</ul> <!-- ul class="nav navbar-nav navbar-right" -->
+			</div> <!-- div class="container-fluid" -->
+	</nav> <!-- nav -->
+</body> <!-- <body> -->

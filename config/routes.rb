@@ -27,8 +27,9 @@ Rails.application.routes.draw do
   get '/adminLogout' => 'session#adminDestroy' , :as =>"adminLogout"
 
   put '/updatestatus' => 'orders#updatestatus' , :as => 'updatestatus'
-  
-  get '/lineItemList' => 'line_item#lineItemList'
+  # post '/updatestatus' => 'orders#updatestatus'
 
+  get '/lineItemList' => 'line_item#lineItemList'
+  get '/test' => 'users#test' , :as => 'test'
 
 end
