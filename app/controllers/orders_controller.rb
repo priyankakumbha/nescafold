@@ -8,20 +8,15 @@ class OrdersController < ApplicationController
       # if @current_user.admin
       #   @orders = Order.all
       # else
-        @orders = @current_user.orders
+      @orders = @current_user.orders
     else
       redirect_to login_path
     end
-
   end
 
   def adminmain
     if @current_user.present?
-      if @current_user.admin
-        @orders = Order.all
-      else
-
-      end
+      @orders = Order.all if @current_user.admin
     else
       redirect_to adminLogin_path
     end
@@ -44,27 +39,23 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
     if @current_user.present?
-      time = ` uptime `
+      time = Time.now
       order_name = @current_user.name + time
-      @shop = Shop.find(params["shopId"])
-      @order = Order.create :name => order_name , :user_id => @current_user.id
-      i = 0;
+      @shop = Shop.find(params['shopId'])
+      @order = Order.create name: order_name, user_id: @current_user.id
+      i = 0
       if @order.present?
-        until params["name"].length-1 < i  do
-          @lineitem = LineItem.create :product_id => params["productId"][i].to_i , :order_id => @order.id.to_i , :quantity => params["quantity"][i].to_i , :price =>  params["price"][i].to_i
-          i +=1;
+        until params['name'].length - 1 < i
+          @lineitem = LineItem.create product_id: params['productId'][i].to_i, order_id: @order.id.to_i, quantity: params['quantity'][i].to_i, price: params['price'][i].to_i
+          i += 1
         end
-        UserMailer.order_summary(@user).deliver_now
+        # UserMailer.order_summary(@user).deliver_now
         redirect_to orders_path
         # t.integer  "product_id"
         # t.integer  "order_id"
         # t.integer  "quantity"
         # t.integer  "price"
-      else
-        # format.html { render :new }
-        # format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     else
       redirect_to login_path
@@ -98,7 +89,11 @@ class OrdersController < ApplicationController
   end
 
   def updatestatus
-    binding.pry
+
+    @order = Order.find_by_id(params["request"]["name"])
+    @order.update( :status => params["state_search"])
+
+    redirect_to adminmain_path
   end
 
   # DELETE /orders/1
@@ -112,13 +107,14 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:name, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:name, :status)
+  end
 end
