@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get "restaurants" => "pages#shop", as: :shops
 
-  get '/lineItemList' => 'line_item#lineItemList' 
+  get '/lineItemList' => 'line_item#lineItemList'
 
   resources :products
   resources :shops
