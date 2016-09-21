@@ -4,17 +4,27 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    binding.pry
     if @current_user.present?
-      if @current_user.admin
-        @orders = Order.all
-      else
+      # if @current_user.admin
+      #   @orders = Order.all
+      # else
         @orders = @current_user.orders
-      end
     else
       redirect_to login_path
     end
 
+  end
+
+  def adminmain
+    if @current_user.present?
+      if @current_user.admin
+        @orders = Order.all
+      else
+
+      end
+    else
+      redirect_to adminLogin_path
+    end
   end
 
   # GET /orders/1
@@ -24,7 +34,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    binding.pry
     @order = Order.new
   end
 
@@ -86,6 +95,10 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def updatestatus
+    binding.pry
   end
 
   # DELETE /orders/1
