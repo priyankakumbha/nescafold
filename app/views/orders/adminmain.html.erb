@@ -12,13 +12,13 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <!-- <%= form_tag updatestatus_path, :url => updatestatus_path do %>
-          <td class="order_name"><%= order.name %></td>
-          <td><%= order.status %></td>
-          <th><%= submit_tag "WAIT" %></th>
-          <th><%= submit_tag "COOK" %></th>
-          <th><%= submit_tag "DELIVER" %></th>
-        <% end %> -->
+        <%= form_for(:request , :url => updatestatus_path , :method => 'PUT') do |f| %>
+        <%= f.hidden_field :name, value: order.id %>
+        <td>  <%= order.name %> </td>
+        <td>  <%= order.status %>  </td>
+        <td><%= select_tag :state_search, options_for_select([['WAIT', 'WAIT'],['COOK', 'COOK'], ['DELIVER', 'DELIVER']]) %></td>
+        <td><%= submit_tag "UPDATE" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
