@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  # def index
+  # end
 
   def new
 end
