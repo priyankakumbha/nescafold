@@ -81,22 +81,22 @@ $(document).on("turbolinks:load", function() {
     }
     // .currentTarget.getElementsByClassName("p_name")[0].innerHTML;
   });
-  // $(".order_btn").on("click" , function(){
-  //       $.ajax({
-  //         url: "/orders",
-  //         method: "POST",
-  //         data: {
-  //           name: nameArr,
-  //           price: priceArr,
-  //           shopId: shopId,
-  //           productId: productIdArr,
-  //           quantity: quantityArr ,
-  //           total: total
-  //         }
-  //       }).done(function (data) {
-  //         console.log( data );
-  //       });
-  // });
+  $(".order_btn").on("click" , function(){
+        $.ajax({
+          url: "/orders",
+          method: "POST",
+          data: {
+            name: nameArr,
+            price: priceArr,
+            shopId: shopId,
+            productId: productIdArr,
+            quantity: quantityArr ,
+            total: total
+          }
+        }).done(function (data) {
+          console.log( data );
+        });
+  });
 });
 
 
