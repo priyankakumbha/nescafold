@@ -41,7 +41,6 @@ class OrdersController < ApplicationController
   def create
     if @current_user.present?
       time = Time.now
-      binding.pry
       order_name = @current_user.name + time.to_s
       @shop = Shop.find(params['shopId'])
       @order = Order.create name: order_name, user_id: @current_user.id
