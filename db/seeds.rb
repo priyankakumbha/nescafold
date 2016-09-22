@@ -9,9 +9,6 @@ p "User Count: #{User.all.count} "
 
 Shop.destroy_all
 
-s1 = Shop.create name: 'The Fine Food Store ', description: "When it comes to family, actions speak louder than words. We care about our extended families \u2013 our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity.", image: 'http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg'
-
-s2 = Shop.create name: 'Hunter Connection International Food Court', description: 'our menu is versatile and constantly evolving, embracing the best of regional and rural cuisines to satisfy even the most discerning of palates.  ', image: 'http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg'
 
 
 s1 = Shop.create :name => "The Fine Food Store ", :description => "When it comes to family, actions speak louder than words. We care about our extended families – our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity." ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg", :latlng => "-33.8660109, 151.2054294"
