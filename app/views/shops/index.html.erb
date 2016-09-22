@@ -1,24 +1,35 @@
 <p id="notice"><%= notice %></p>
+
 <!-- JumboTron -->
-<div class="jumbotron">
-    <div class="container">
-        <h1>Listing Shops</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+<div id="jumbo-index" class="jumbotron">
+    <div id="jumbo-text" class="container">
+        <h1>
+            <b>Listing Shops</b>
+        </h1>
+        <hr>
+        <p>Welcome to our deliver shop.. Choose your food and have fun.</p>
     </div>
 </div>
 <!-- JumboTron -->
 
 <hr>
 
-<% @shops.each do |shop| %>
-
+<div class="container"></div>
 <div class="row">
-    <div class="col-sm-6 col-md-3">
+    <% @shops.each do |shop| %>
+    <div class="col-md-3 col-sm-3">
         <div class="thumbnail">
             <h3><%= link_to shop.name , shop_path(shop.id) , method: :get %></h3>
-         <%= cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 450, :height => 450, :class => "thumbnail ") %>
-         <p> <%= shop.description %> </p> 
-         </div>
+            <hr>
+            <%= link_to  cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 450, :height => 450) , shop_path(shop.id) %>
+            <div class="caption">
+                <p>
+                    <%= shop.description.truncate 90 %>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <%  end %>
+</div>
+</div>

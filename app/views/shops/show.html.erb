@@ -1,65 +1,77 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shop.name %>
-<div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
-</p>
-<div id='shoplatlng'><%= @shop.latlng %></div>
-<div id='map'></div>
 
-
-
-<p>
-  <strong>Description:</strong>
-  <%= @shop.description %>
-</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Product_id</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Shop</th>
-        <th>Image</th>
-        <th>checkBox</th>
-        <th>Quantity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @shop.products.all.each do |product| %>
-<div>
-        <tr class="data">
-          <td class="p_id"><%= product.id %></td>
-          <td class="p_name"><%= product.name %></td>
-          <td class="p_price"><%= product.price %></td>
-          <td class="p_desc"><%= product.description %></td>
-          <td class="shop_id"><%= product.shop_id %></td>
-          <td><div class="imageshow">  <%= cl_image_tag(product.image) %></div></td>
-          <td><input class="checkItem" type="checkbox"/></td>
-          <td><input class="quantity" type="number"/></td>
-        </tr>
+<div id="jumbo-index-shop" class="jumbotron">
+  <div class="row">
+    <div id="Shop-description" class="col-md-6 col-md-offset-2">
+      <h1><%= @shop.name %></h1>
+      <h3><%= @shop.description %></h3>
+    </div>
+    <div class="col-md-4">
+      <div id="map" class="col-md-4">
+          <div id='shoplatlng' <%= @shop.latlng %> ></div>
+          <div id='map'></div>
+        </div>
       </div>
-      <% end %>
-    </tbody>
-  </table>
-  <br>
-  <div class="order_div">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>quantity</th>
-        </tr>
-      </thead>
-      <tbody class="order_list">
-      </tbody>
-    </table>
-    <p>Total</p> <p class="total"></p>
+
+    </div>
+</div>
+
+<br>
+<hr>
+
+
+<!-- BODY  -->
+
+<!-- MENU ITENS  -->
+<!-- BOOTSTRAP  -->
+
+<div class="row">
+  <div class="col-md-9">
+    <% @shop.products.all.each do |product| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= cl_image_tag(product.image) %>
+          <div class="caption">
+            <input class="shop_id" type="hidden" name="shop_id" value="<%= product.shop_id %>" />
+            <input class="product_id" type="hidden" name="product_id" value="<%= product.id %>" />
+            <input class="product_price" type="hidden" name="product_price" value="<%= product.price %>" />
+            <h3><%= product.name %></h3>
+            <p><%= product.description.truncate 90 %></p>
+            <h4>Price: $<%= product.price %>,00 </h4>
+            <p>Quantity:
+              <select class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </p>
+            <button id="add_button" type="button"  class="btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-star-empty" aria-hidden="true" ></span> ADD
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
   </div>
-  <button class="order_btn">order</button>
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+  <div class="col-md-3">
+    <ul class="list-group">
+    <div class="order_div">
+    </div>
+      <hr>
+      <h4 class="total">Price: $</h4><button id="order_btn" type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" ></span>ORDER
+      </button>
+      <hr>
+        <%= link_to 'Back', shops_path %>
+    </ul>
+</div>
