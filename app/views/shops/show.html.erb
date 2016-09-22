@@ -1,20 +1,84 @@
 <p id="notice"><%= notice %></p>
 
+
+<div id="jumbo-text" class="container">
+  <div id="Shop-description" class="col-md-8">
+    <h1><%= @shop.name %></h1>
+    <h3><%= @shop.description %></h3>
+
+    <div class="row">
+      <div>
+        <%= image_tag(@shop.image) %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="jumbo-index-shop" class="jumbotron">
     <div id="map" class="col-md-4">
         <div id='shoplatlng' <%= @shop.latlng %> ></div>
         <div id='map'></div>
     </div>
-    <div id="jumbo-text" class="container">
-        <div id="Shop-description" class="col-md-8">
-            <h1><%= @shop.name %></h1>
-            <h3><%= @shop.description %></h3>
+</div>
 
-            <div class="row">
-                <div>
-                    <%= image_tag(@shop.image) %>
-                </div>
-            </div>
+<div id="Shop-description">
+    <h1><%= @shop.name %></h1>
+    <h3><%= @shop.description %></h3>
+</div>
+
+<hr>
+
+
+<!-- BODY  -->
+
+<!-- MENU ITENS  -->
+<!-- BOOTSTRAP  -->
+
+<div class="row">
+  <div class="col-md-9">
+    <% @shop.products.all.each do |product| %>
+        <div class="col-xs-6 col-md-4">
+          <div class="thumbnail">
+              <%= cl_image_tag(product.image) %>
+              <div class="caption">
+                <!-- hidden value : use for send data -->
+                  <input class="shop_id" type="hidden" name="shop_id" value="<%= product.shop_id %>" />
+                  <input class="product_id" type="hidden" name="product_id" value="<%= product.id %>" />
+                  <input class="product_price" type="hidden" name="product_price" value="<%= product.price %>" />
+                  <h3><%= product.name %></h3>
+                  <p><%= product.description %></p>
+                  <h4>Price: $<%= product.price %>,00 </h4>
+                  <p>Quantity:
+                    <select class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    </select>
+                  </p>
+                  <button id="add_button" type="button"  class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true" ></span> ADD
+                  </button>
+              </div>
+          </div>
         </div>
+    <% end %>
+  </div>
+  <div class="col-md-3">
+    <ul class="list-group">
+    <div class="order_div">
     </div>
+      <hr>
+      <h4 class="total">Price: $</h4><button id="order_btn" type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" ></span>ORDER
+      </button>
+      <hr>
+        <%= link_to 'Back', shops_path %>
+    </ul>
 </div>
