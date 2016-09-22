@@ -1,69 +1,80 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+    <div id ="shop-image" class="col-xs-12 col-md-8">
+        <div>
+            <%= image_tag(@shop.image,  :width => 500, :height => 550,) %>
+        </div>
+    </div>
 
-<div class="jumbotron">
-  <h1> <%= @shop.name %></h1>
-  <h3> <%= @shop.description %></h3>
+    <div id="map" class="col-xs-6 col-md-4">
+        <div id='shoplatlng'><%= @shop.latlng %></div>
+        <div id='map'></div>
+    </div>
+</div>
+
+<div id="Shop-description">
+    <h1><%= @shop.name %></h1>
+    <h3><%= @shop.description %></h3>
 </div>
 
 
-<div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
-
-<div id='shoplatlng'><%= @shop.latlng %></div>
-<div id='map'></div>
 
 <!-- BODY  -->
 
 <!-- MENU ITENS  -->
 <!-- BOOTSTRAP  -->
+
 <div class="row">
-  <div class="col-md-9">
-    <% @shop.products.all.each do |product| %>
-        <div class="col-sm-5 col-md-2">
-          <div class="thumbnail">
-            <%= cl_image_tag(product.image) %>
-              <div class="caption">
-                  <h3><%= product.name %></h3>
-                  <p><%= product.description %></p>
-                  <h4>Price: $<%= product.price %>,00 </h4>
-                  <p>Quantity:
-                    <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    </select></p>
-                  <p> Put on the list:<input class="checkItem" type="checkbox"/></p>
-              </div>
-          </div>
+    <div class="col-md-9">
+        <% @shop.products.all.each do |product| %>
+        <div class="col-xs-6 col-md-4">
+            <div class="thumbnail">
+                <%= cl_image_tag(product.image) %>
+                <div class="caption">
+                    <h3><%= product.name %></h3>
+                    <p><%= product.description %></p>
+                    <h4>Price: $<%= product.price %>,00
+                    </h4>
+                    <p>Quantity:
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </p>
+                    <p>
+                        Put on the list:<input class="checkItem" type="checkbox"/></p>
+                </div>
+            </div>
         </div>
-    <% end %>
-  </div>
+        <% end %>
+    </div>
 </div>
 
 <!-- BOOTSTRAP  -->
 
-
-
-
 <!-- MENU ITENS  -->
 
-
-  <!-- ORDER VIEW FUNCTION  -->
-  <div class="order_div">
+<!-- ORDER VIEW FUNCTION  -->
+<div class="col-md-3">
+    <div class="order_div"></div>
     <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>quantity</th>
-        </tr>
-      </thead>
-      <tbody class="order_list">
-      </tbody>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>quantity</th>
+            </tr>
+        </thead>
+        <tbody class="order_list"></tbody>
     </table>
-    <p>Total</p> <p class="total"></p>
-  </div>
-  <button class="order_btn">order</button>
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
+    <p>Total</p>
+    <p class="total"></p>
+</div>
+<button class="order_btn">order</button>
+</div>
+<%= link_to 'Edit', edit_shop_path(@shop) %>
+|
 <%= link_to 'Back', shops_path %>
