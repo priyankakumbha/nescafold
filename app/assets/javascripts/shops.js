@@ -8,10 +8,11 @@ $(document).on("turbolinks:load", function() {
   var product_price = 0;
   var product_quantity = 0;
 
-  var priceValue = 0;
+  var totalValue = 0;
 
   var $total = $(".total");
 
+  // Add sopping cart
   $("body").on("click", "#add_button", function(e) {
 
     // save clicked item
@@ -23,13 +24,13 @@ $(document).on("turbolinks:load", function() {
     if ( itemArr.length > 0){
       for ( var i = 0; i < itemArr.length; i ++ ){
         // has same product
-
+      
         if(itemArr[i].product_name === product_name){
           itemArr[i].product_quantity += product_quantity;
-          priceValue += (product_price * product_quantity);
+          totalValue += (product_price * product_quantity);
           var $targetTag = $("."+product_name.split(' ').join(''));
           $targetTag.text(itemArr[i].product_quantity);
-          $total.text("Price: $"+priceValue);
+          $total.text("Price: $"+totalValue);
 
           return ;
         }
@@ -44,8 +45,8 @@ $(document).on("turbolinks:load", function() {
         product_quantity: product_quantity
       });
       createTag(product_name , product_quantity);
-      priceValue += (product_price * product_quantity);
-      $total.text("Price: $"+priceValue);
+      totalValue += (product_price * product_quantity);
+      $total.text("Price: $"+totalValue);
       console.log("end if ");
     }else{
       itemArr.push({
@@ -56,22 +57,35 @@ $(document).on("turbolinks:load", function() {
         product_quantity: product_quantity
       });
       createTag(product_name , product_quantity);
-      priceValue += (product_price * product_quantity);
-      $total.text("Price: $"+priceValue);
+      totalValue += (product_price * product_quantity);
+      $total.text("Price: $"+totalValue);
     }
   });
+  // cancel shopping item
+  $("body").on("click", ".badge", function(e) {
 
-  $(".order_btn").on("click" , function(){
+    var targetName = $(this).parent().find("p").text();
+    for ( var i = 0 ; i < itemArr.length; i++){
+      if (itemArr[i].product_name === targetName ){
+        var minusValue =( itemArr[i].product_price * itemArr[i].product_quantity);
+        totalValue -= minusValue;
+        itemArr.splice( i , 1);
+        this.parentElement.remove();
+        $total.text("Price: $"+totalValue);
+
+        return ;
+      }
+    }
+
+  });
+
+  // order shopping list
+  $("#order_btn").on("click" , function(){
         $.ajax({
           url: "/orders",
           method: "POST",
           data: {
-            // name: nameArr,
-            // price: priceArr,
-            // shopId: shopId,
-            // productId: productIdArr,
-            // quantity: quantityArr ,
-            // total: total
+            orderList: itemArr
           }
         }).done(function (data) {
           console.log( data );
