@@ -42,12 +42,13 @@ class OrdersController < ApplicationController
     if @current_user.present?
       time = Time.now
       order_name = @current_user.name + time.to_s
-      @shop = Shop.find(params['shopId'])
+
+      @shop = Shop.find(params["orderList"]["0"]["shop_id"].to_i)
       @order = Order.create name: order_name, user_id: @current_user.id
       i = 0
       if @order.present?
-        until params['name'].length - 1 < i
-          @lineitem = LineItem.create product_id: params['productId'][i].to_i, order_id: @order.id.to_i, quantity: params['quantity'][i].to_i, price: params['price'][i].to_i
+        until params["orderList"].length - 1 < i
+          @lineitem = LineItem.create product_id: params["orderList"][i.to_s]["product_id"].to_i, order_id: @order.id.to_i, quantity: params["orderList"][i.to_s]["product_quantity"].to_i, price: params["orderList"][i.to_s]["product_price"].to_i
           i += 1
         end
         # UserMailer.order_summary(@user).deliver_now
