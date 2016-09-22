@@ -37,7 +37,7 @@
             <input class="product_id" type="hidden" name="product_id" value="<%= product.id %>" />
             <input class="product_price" type="hidden" name="product_price" value="<%= product.price %>" />
             <h3><%= product.name %></h3>
-            <p><%= product.description.truncate 90 %></p>
+            <p><%= product.description.truncate 70 %></p>
             <h4>Price: $<%= product.price %>,00 </h4>
             <p>Quantity:
               <select class="form-control">
