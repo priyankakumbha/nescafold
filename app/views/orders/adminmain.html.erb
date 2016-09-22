@@ -15,9 +15,24 @@
         <%= form_for(:request , :url => updatestatus_path , :method => 'PUT') do |f| %>
         <%= f.hidden_field :name, value: order.id %>
         <td>  <%= order.name %> </td>
-        <td>  <%= order.status %>  </td>
+        <td class="orderStatus">  <%= order.status %>  </td>
         <td><%= select_tag :state_search, options_for_select([['WAIT', 'WAIT'],['COOK', 'COOK'], ['DELIVER', 'DELIVER']]) %></td>
         <td><%= submit_tag "UPDATE" %></td>
+        <td class="status WAIT">
+          <div class="alert alert-danger" role="alert">
+            <a href="#" class="alert-link">...</a>
+          </div>
+        </td>
+        <td class="status COOK">
+          <div class="alert alert-info" role="alert">
+            <a href="#" class="alert-link">...</a>
+          </div>
+        </td>
+        <td class="status DELIVER">
+          <div class="alert alert-success" role="alert">
+            <a href="#" class="alert-link">...</a>
+          </div>
+        </td>
         <% end %>
       </tr>
     <% end %>
