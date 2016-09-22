@@ -7,25 +7,18 @@ u3 = User.create name: 'Lucas', email: 'lucas@ga.co', password: 'chicken', passw
 
 p "User Count: #{User.all.count} "
 
+
 Shop.destroy_all
 
-s1 = Shop.create name: 'The Fine Food Store ', description: "When it comes to family, actions speak louder than words. We care about our extended families \u2013 our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity.", image: 'http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg'
+s1 = Shop.create name: 'The Fine Food Store ', description: "When it comes to family, actions speak louder than words. We care about our extended families \u2013 our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity.", image: 'http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg', :latlng => "-33.8584025,151.2064343"
 
 s2 = Shop.create name: 'Hunter Connection International Food Court', description: 'our menu is versatile and constantly evolving, embracing the best of regional and rural cuisines to satisfy even the most discerning of palates.  ', image: 'http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg'
 
+s3 = Shop.create :name => "The Fine Food Store ", :description => "When it comes to family, actions speak louder than words. We care about our extended families – our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity." ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg", :latlng => "-33.8660109, 151.2054294"
 
-s1 = Shop.create :name => "The Fine Food Store ", :description => "When it comes to family, actions speak louder than words. We care about our extended families – our customers, staff, suppliers and community. We are involved, engaged and we always behave with integrity." ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325016/6d68bbd502a2dbbcde2d44b4af84b1ed_ksxswl.jpg", :latlng => "-33.8660109, 151.2054294"
-s2 = Shop.create :name => "Hunter Connection International Food Court", :description => "our menu is versatile and constantly evolving, embracing the best of regional and rural cuisines to satisfy even the most discerning of palates.  " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg", :latlng => "-33.8660109, 151.2054294"
-s3 = Shop.create :name => "Westpac Place Food Court", :description => "THIS FOOD COURT SHOP IS LOCATED IN THE EXTREMELY BUSY WESTPAC PLACE WITH SOME 6500 EMPLOYEES JUST IN THE BUILIDNG ABOVE. " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325024/cabukee-counter_kqvvgl.png", :latlng => "-33.8660109, 151.2054294"
+s4 = Shop.create :name => "Hunter Connection International Food Court", :description => "our menu is versatile and constantly evolving, embracing the best of regional and rural cuisines to satisfy even the most discerning of palates.  " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325030/ultimo-coffee_q5c15s.jpg", :latlng => "-33.8660109, 151.2054294"
 
-
-s4 = Shop.create :name => "Westfield Food Court", :description => "It's very good" ,:image => "http://fillmurray.com/200/300.jpg"
-s5 = Shop.create :name => "Food on Five Food Court ", :description => "It's very cheap " ,:image => "http://fillmurray.com/200/300.jpg"
-s6 = Shop.create :name => "Metcentre Food Court", :description => "Joes Gilfriend Cafe !! " ,:image => "http://fillmurray.com/200/300.jpg"
-
-
-
-
+s5 = Shop.create :name => "Westpac Place Food Court", :description => "THIS FOOD COURT SHOP IS LOCATED IN THE EXTREMELY BUSY WESTPAC PLACE WITH SOME 6500 EMPLOYEES JUST IN THE BUILIDNG ABOVE. " ,:image => "http://res.cloudinary.com/dvhmkrgs2/image/upload/v1474325024/cabukee-counter_kqvvgl.png", :latlng => "-33.8660109, 151.2054294"
 
 p "Shops Count: #{Shop.all.count}"
 
