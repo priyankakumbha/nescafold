@@ -16,30 +16,29 @@
 <!-- MENU ITENS  -->
 <!-- BOOTSTRAP  -->
 <div class="row">
-<% @shop.products.all.each do |product| %>
-
-    <div class="col-sm-6 col-md-2">
-      <div class="thumbnail">
-        <%= cl_image_tag(product.image) %>
-          <div class="caption">
-              <h3><%= product.name %></h3>
-              <p><%= product.description %></p>
-              <h4>Price: $<%= product.price %>,00 </h4>
-              <p>Quantity:
-                <select class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                </select></p>
-
-              <p> Put on the list:<input class="checkItem" type="checkbox"/></p>
+  <div class="col-md-9">
+    <% @shop.products.all.each do |product| %>
+        <div class="col-sm-5 col-md-2">
+          <div class="thumbnail">
+            <%= cl_image_tag(product.image) %>
+              <div class="caption">
+                  <h3><%= product.name %></h3>
+                  <p><%= product.description %></p>
+                  <h4>Price: $<%= product.price %>,00 </h4>
+                  <p>Quantity:
+                    <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    </select></p>
+                  <p> Put on the list:<input class="checkItem" type="checkbox"/></p>
+              </div>
           </div>
-      </div>
-    </div>
-
-<% end %>
+        </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- BOOTSTRAP  -->
