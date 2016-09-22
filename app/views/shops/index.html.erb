@@ -24,7 +24,7 @@
             <%= link_to  cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 450, :height => 450) , shop_path(shop.id) %>
             <div class="caption">
                 <p>
-                    <%= shop.description %>
+                    <%= shop.description.truncate 90 %>
                 </p>
             </div>
         </div>
