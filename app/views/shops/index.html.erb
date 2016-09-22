@@ -20,6 +20,7 @@
     <div class="col-md-3 col-sm-3">
         <div class="thumbnail">
             <h3><%= link_to shop.name , shop_path(shop.id) , method: :get %></h3>
+            <hr>
             <%= link_to  cl_image_tag(shop.image, :gravity=>"face", :crop => "fill", :width => 450, :height => 450) , shop_path(shop.id) %>
             <div class="caption">
                 <p>
