@@ -5,6 +5,7 @@ class ShopsController < ApplicationController
   # GET /shops.json
   def index
     @shops = Shop.all
+    @shop = Shop.find(params[:id])
   end
 
   # GET /shops/1
@@ -67,6 +68,11 @@ end
     end
   end
 
+  def shop_params
+    params.require(:shop).permit(:name, :description, :product_id,:latlng)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
@@ -74,7 +80,4 @@ end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def shop_params
-      params.require(:shop).permit(:name, :description, :product_id,:latlng)
-    end
 end

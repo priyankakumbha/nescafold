@@ -1,16 +1,14 @@
 <p id="notice"><%= notice %></p>
-
-
 <div id="jumbo-index-shop" class="jumbotron">
-  <div class="row">
+  <div class="row" id="jumbo-index-row">
     <div id="Shop-description" class="col-md-6 col-md-offset-2">
-      <h1><%= @shop.name %></h1>
+      <h1 id="shopName"><%= @shop.name %></h1>
       <h3><%= @shop.description %></h3>
     </div>
-    <div class="col-md-4">
-      <div id="map" class="col-md-4">
-          <div id='shoplatlng'><%= @shop.latlng %> ></div>
-          <div id='map'></div>
+    <div class="col-md-4" id="mapContainer">
+      <div id='map' class="col-md-4">
+          <div id='shoplatlng'><%= @shop.latlng %></div>
+          <div id='singlemap'></div>
         </div>
       </div>
 
@@ -37,7 +35,7 @@
             <input class="product_id" type="hidden" name="product_id" value="<%= product.id %>" />
             <input class="product_price" type="hidden" name="product_price" value="<%= product.price %>" />
             <h3><%= product.name %></h3>
-            <p><%= product.description.truncate 70 %></p>
+            <p><%= product.description.truncate 90 %></p>
             <h4>Price: $<%= product.price %>,00 </h4>
             <p>Quantity:
               <select class="form-control">

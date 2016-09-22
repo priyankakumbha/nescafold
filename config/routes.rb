@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :shops
   resources :orders
   resources :users
-  resources :charges
+  
 
   resource :messages do
     collection do
