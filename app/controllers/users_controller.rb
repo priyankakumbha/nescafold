@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def test
-    
+
   end
   # GET /users/1
   # GET /users/1.json
@@ -33,8 +33,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
 
-      someController = NotificationsController.new
-      someController.send_message(@user.phone_number , '', @image_url);
+
 
       if @user.save
         UserMailer.welcome(@user).deliver_now
