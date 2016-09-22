@@ -1,42 +1,59 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+    <div id ="shop-image" class="col-xs-12 col-md-8">
+        <div>
+            <%= image_tag(@shop.image,  :width => 500, :height => 550,) %>
+        </div>
+    </div>
 
-<div class="jumbotron">
-  <h1> <%= @shop.name %></h1>
-  <h3> <%= @shop.description %></h3>
+    <div id="map" class="col-xs-6 col-md-4">
+        <div id='shoplatlng'><%= @shop.latlng %></div>
+        <div id='map'></div>
+    </div>
+</div>
+
+<div id="Shop-description">
+    <h1><%= @shop.name %></h1>
+    <h3><%= @shop.description %></h3>
 </div>
 
 
-<div class="imageshow">  <%= cl_image_tag(@shop.image) %></div>
-
-<div id='shoplatlng'><%= @shop.latlng %></div>
-<div id='map'></div>
 
 <!-- BODY  -->
 
 <!-- MENU ITENS  -->
 <!-- BOOTSTRAP  -->
+
 <div class="row">
   <div class="col-md-9">
     <% @shop.products.all.each do |product| %>
-        <div class="col-sm-5 col-md-2">
+        <div class="col-xs-6 col-md-4">
           <div class="thumbnail">
-            <%= cl_image_tag(product.image) %>
+              <%= cl_image_tag(product.image) %>
               <div class="caption">
-                  <input type="hidden" name="id" value="<%= product.id %>" />
+                <!-- hidden value : use for send data -->
+                  <input class="shop_id" type="hidden" name="shop_id" value="<%= product.shop_id %>" />
+                  <input class="product_id" type="hidden" name="product_id" value="<%= product.id %>" />
+                  <input class="product_price" type="hidden" name="product_price" value="<%= product.price %>" />
                   <h3><%= product.name %></h3>
                   <p><%= product.description %></p>
                   <h4>Price: $<%= product.price %>,00 </h4>
                   <p>Quantity:
                     <select class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                     </select>
                   </p>
-                  <button type="button" class="btn btn-default btn-lg">
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> ADD
+                  <button id="add_button" type="button"  class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true" ></span> ADD
                   </button>
               </div>
           </div>
@@ -44,34 +61,15 @@
     <% end %>
   </div>
   <div class="col-md-3">
+    <ul class="list-group">
     <div class="order_div">
-      <ul class="list-group">
-        <li class="list-group-item">
-        <span class="badge">14
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-        </span>
-          prouct_name
-        </li>
-
-        <hr>
-        <h4>Price: $</h4>
-        <hr>
-          <%= link_to 'Back', shops_path %>
-      </ul>
-
-      <!-- <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>quantity</th>
-          </tr>
-        </thead>
-        <tbody class="order_list">
-        </tbody>
-      </table>
-      <p>Total</p> <p class="total"></p>
     </div>
-    <button class="order_btn">order</button> -->
-  </div>
+      <hr>
+      <h4 class="total">Price: $</h4><button id="order_btn" type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" ></span>ORDER
+      </button>
+      <hr>
+        <%= link_to 'Back', shops_path %>
+    </ul>
+
 </div>

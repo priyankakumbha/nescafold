@@ -1,15 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
-body{
-
-
-}
-
-
-
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -43,4 +34,9 @@ body{
         background-color: inherit;
         border-top:0 none;
     }
+}
+
+#img-shop{
+    height: 100%;
+    position: fixed;
 }
